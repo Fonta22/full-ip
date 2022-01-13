@@ -1,22 +1,10 @@
 # Script by Fonta22 (2022)
-# Repo: https://github.com/Fonta22/repo
+# Repo: https://github.com/Fonta22/full-ip
 
 url=http://ipecho.net/plain
 
 nc='\033[0m'
 color='\033[1;32m'
-
-if [ "$1" = "-h" ] || [ "$1" = "--help" ]
-then
-    echo "[v1.0.0]"
-    echo "Show ip addresses"
-    echo "options:"
-    echo "      -h                  show this help menu"
-    echo "      -oF file            save full command in output file"
-    echo "      -oP file            save plain ip addresses to output file"
-
-    exit 0
-fi
 
 public_ip() {
     wget $url -O - -q ; echo
@@ -31,6 +19,29 @@ private_ip() {
         ip addr show eth0 | grep 'inet6' | awk '{ print $2; }' | sed 's/\/.*$//'
     fi
 }
+
+if [ "$1" = "-h" ] || [ "$1" = "-help" ]
+then
+    echo "[v1.0.0]"
+    echo "Show ip addresses"
+    echo "options:"
+    echo "      -h                  show this help menu"
+    echo "      -oF file            save full command in output file"
+    echo "      -oP file            save plain ip addresses to output file"
+
+    exit 0
+fi
+
+if [ "$1" = "-public" ]
+then
+    public_ip
+    exit 0
+elif [ "$1" = "-private" ]
+then
+    private_ip "v4"
+    private_ip "v6"
+    exit 0
+fi
 
 echo "- [PUBLIC]"
 echo -n "       - [IPv4]: "
