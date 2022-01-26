@@ -25,11 +25,11 @@ then
     echo "[v1.0.0]"
     echo "Show ip addresses"
     echo "options:"
-    echo "      -h                  show this help menu"
-    echo "      -public             show the public ip only"
-    echo "      -private            show the private ip only"
-    echo "      -oF file            save full command in output file"
-    echo "      -oP file            save plain ip addresses to output file
+    echo "      -help                  show this help menu"
+    echo "      -public                show the public ip only"
+    echo "      -private               show the private ip only"
+    echo "      -oF <file>             save full command in output file"
+    echo "      -oP <file>             save plain ip addresses to output file"
 
     exit 0
 fi
